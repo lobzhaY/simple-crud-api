@@ -1,0 +1,43 @@
+{
+  "name": "simple-crud-api",
+  "version": "1.0.0",
+  "description": "Assignment for learning simple crud operations on Node.js and Typescript",
+  "homepage": "https://github.com/lobzhaY/simple-crud-api#readme",
+  "bugs": {
+    "url": "https://github.com/lobzhaY/simple-crud-api/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lobzhaY/simple-crud-api.git"
+  },
+  "license": "ISC",
+  "author": "lobzhaY",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "scripts": {
+    "start:dev": "cross-env NODE_ENV=development ts-node-dev src/index.ts",
+    "start:prod": "cross-env NODE_ENV=production tsc && node dist/index.js",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.17",
+    "@types/supertest": "^6.0.3",
+    "supertest": "^7.1.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.32.0",
+    "@typescript-eslint/parser": "^8.32.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.5.0",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.0",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.5.3",
+    "ts-loader": "^9.5.2"
+  }
+}
