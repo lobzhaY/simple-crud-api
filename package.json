@@ -17,7 +17,8 @@
   "scripts": {
     "start:dev": "cross-env NODE_ENV=development ts-node-dev src/index.ts",
     "start:prod": "tsc && cross-env NODE_ENV=production node dist/index.js",
-    "start:multi": "ts-node src/cluster.ts",
+      "build": "tsc",
+    "start:multi": "npm run build && node dist/cluster.js",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write .",
      "test": "jest --silent",
