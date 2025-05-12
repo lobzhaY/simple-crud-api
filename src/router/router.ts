@@ -1,4 +1,3 @@
-
 import { IncomingMessage, ServerResponse } from 'node:http';
 // import { getRoutes } from '../utils/index';
 import { parse } from 'node:url';
@@ -18,11 +17,15 @@ export const router = async (
   const routeKey = `${method}:${pathNormalize}:${pathnameArr.length}`;
   const handler = ROUTERS_CONTROLLERS[routeKey];
 
-
   if (handler) {
     const id = pathnameArr[2];
     handler(req, res, id!);
   } else {
-      addRequest(req, res, STATUS_CODES.notFound, JSON.stringify({message: LOGS.notExist}));
+    addRequest(
+      req,
+      res,
+      STATUS_CODES.notFound,
+      JSON.stringify({ message: LOGS.notExist })
+    );
   }
 };

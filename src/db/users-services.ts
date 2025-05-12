@@ -16,7 +16,7 @@ const updateUser = (id: string, newBody: User) => {
   const body = {
     ...newBody,
     id,
-  }
+  };
   users.set(id, body);
   return users.get(id);
 };

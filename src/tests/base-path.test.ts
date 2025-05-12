@@ -14,7 +14,10 @@ describe('User API', () => {
   });
 
   it('Should create a new user', async () => {
-    const res = await request(server).post('/api/users').send(mockNewUser).set('Content-Type', 'application/json');
+    const res = await request(server)
+      .post('/api/users')
+      .send(mockNewUser)
+      .set('Content-Type', 'application/json');
     const { id, username, age, hobbies } = res.body;
     expect(res.statusCode).toBe(201);
 
@@ -22,7 +25,7 @@ describe('User API', () => {
     expect(username).toBe(mockNewUser.username);
     expect(age).toBe(mockNewUser.age);
     expect(hobbies).toStrictEqual(mockNewUser.hobbies);
-    userId = id
+    userId = id;
   });
 
   it('Should return the created user by id', async () => {
@@ -60,5 +63,4 @@ describe('User API', () => {
     const res = await request(server).get(`/api/users/${userId}`);
     expect(res.statusCode).toBe(404);
   });
-
 });

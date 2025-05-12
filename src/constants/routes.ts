@@ -1,5 +1,11 @@
-import { getUsers, getUserById, createNewUser, updateUserById, deleteUserById } from "../controllers/index";
-import { HTTP_PATHS, REALIZE_HTTP_METHODS } from "./http";
+import {
+  getUsers,
+  getUserById,
+  createNewUser,
+  updateUserById,
+  deleteUserById,
+} from '../controllers/index';
+import { HTTP_PATHS, REALIZE_HTTP_METHODS } from './http';
 
 export const ROUTERS_CONTROLLERS = {
   [`${REALIZE_HTTP_METHODS.GET}:${HTTP_PATHS}:2`]: getUsers,
