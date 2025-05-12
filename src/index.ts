@@ -23,17 +23,21 @@ addMockData(isDev, users);
 const server = http.createServer(async (req, res) => {
   const { url, method } = req;
   if (!url || !method || !(method in REALIZE_HTTP_METHODS)) {
-      addRequest(req, res, STATUS_CODES.notFound, LOGS.notExist);
+      addRequest(req, res, STATUS_CODES.notFound, JSON.stringify({message: LOGS.notExist}));
       return;
   } else {
     try {
       await router(req, res);
     } catch (err) {
-      addRequest(req, res, STATUS_CODES.serverError, LOGS.serverError);
+      addRequest(req, res, STATUS_CODES.serverError, JSON.stringify({message: LOGS.serverError}));
     }
   } 
 });
 
+if (require.main === module) {
 server.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+}
+
+export { server };

@@ -16,12 +16,12 @@ export const getUserById = (
   id: string
 ): void => {
   if (!isUuid(id)) {
-    addRequest(_req, res, STATUS_CODES.badRequest, LOGS.invalidRequest);
+    addRequest(_req, res, STATUS_CODES.badRequest, JSON.stringify({message: LOGS.invalidRequest}));
   }
 
   const bdUser = usersServices.getUserById(id);
   if (!bdUser) {
-    addRequest(_req, res, STATUS_CODES.notFound, LOGS.uuidNotExist);
+    addRequest(_req, res, STATUS_CODES.notFound, JSON.stringify({message: LOGS.uuidNotExist}));
   } else {
      addRequest(_req, res, STATUS_CODES.success, JSON.stringify(bdUser));
   }
@@ -35,7 +35,7 @@ export const createNewUser = async (
   const isValidUser = checkValidUser(user);
 
   if (!isValidUser) {
-    addRequest(req, res, STATUS_CODES.badRequest, LOGS.invalidRequest);
+    addRequest(req, res, STATUS_CODES.badRequest, JSON.stringify({message: LOGS.invalidRequest}));
   } else {
     const createdUser = await usersServices.createNewUser(user);
 
@@ -45,12 +45,12 @@ export const createNewUser = async (
 
 export const updateUserById = async (req: IncomingMessage, res: ServerResponse, id: string) => {
   if (!isUuid(id)) {
-    addRequest(req, res, STATUS_CODES.badRequest, LOGS.invalidRequest);
+    addRequest(req, res, STATUS_CODES.badRequest, JSON.stringify({message: LOGS.invalidRequest}));
   }
 
    const bdUser = usersServices.getUserById(id);
    if (!bdUser) {
-    addRequest(req, res, STATUS_CODES.notFound, LOGS.uuidNotExist);
+    addRequest(req, res, STATUS_CODES.notFound, JSON.stringify({message: LOGS.uuidNotExist}));
    } else {
     const user = await bodyParser(req);
     const updatedUser = usersServices.updateUser(id, user);
@@ -61,7 +61,7 @@ export const updateUserById = async (req: IncomingMessage, res: ServerResponse, 
 
 export const deleteUserById = (_req: IncomingMessage, res: ServerResponse, id: string) => {
   if (!isUuid(id)) {
-    addRequest(_req, res, STATUS_CODES.badRequest, LOGS.invalidRequest);
+    addRequest(_req, res, STATUS_CODES.badRequest, JSON.stringify({message: LOGS.invalidRequest}));
   }
 
   const result = usersServices.deleteUser(id);
@@ -69,6 +69,6 @@ export const deleteUserById = (_req: IncomingMessage, res: ServerResponse, id: s
   if (result) {
     addRequest(_req, res, STATUS_CODES.deleted, '');
   } else {
-    addRequest(_req, res, STATUS_CODES.notFound, LOGS.uuidNotExist);
+    addRequest(_req, res, STATUS_CODES.notFound, JSON.stringify({message: LOGS.uuidNotExist}));
   }
 };

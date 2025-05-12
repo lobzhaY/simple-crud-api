@@ -23,6 +23,6 @@ export const router = async (
     const id = pathnameArr[2];
     handler(req, res, id!);
   } else {
-      addRequest(req, res, STATUS_CODES.notFound, LOGS.notExist);
+      addRequest(req, res, STATUS_CODES.notFound, JSON.stringify({message: LOGS.notExist}));
   }
 };
